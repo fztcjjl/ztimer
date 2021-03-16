@@ -1,9 +1,3 @@
-# ztimer
-
-Golang implementation of Hierarchical Timing Wheels.
-
-# usage
-```go
 package main
 
 import (
@@ -26,5 +20,3 @@ func main() {
 	t.Start()
 	wg.Wait()
 }
-
-```

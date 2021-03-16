@@ -85,20 +85,3 @@ func (t *Timer) Size() int64 {
 	return t.taskCounter.Get()
 }
 
-type Scheduler interface {
-	Next() time.Duration
-}
-
-func (t *Timer) ScheduleFunc(s Scheduler, f func()) *TimerTask {
-	d := s.Next()
-	if d == 0 {
-		return nil
-	}
-
-	ff := func() {
-		t.ScheduleFunc(s, f)
-		f()
-	}
-
-	return t.AfterFunc(d, ff)
-}
